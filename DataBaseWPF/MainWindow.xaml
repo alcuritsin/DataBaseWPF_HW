@@ -6,7 +6,72 @@
         xmlns:local="clr-namespace:DataBaseWPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+    <Window.Resources>
+        <ResourceDictionary Source="Style.xaml"/>
+    </Window.Resources>
+    <DockPanel>
+        <ListBox x:Name="ListUsers" DockPanel.Dock="Left"
+                 Style="{StaticResource Style_ListUsers}"/>
+        <StackPanel x:Name="UserInfo" DockPanel.Dock="Right">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock x:Name="Label_Input_LastName" 
+                           Text="Фамилия" 
+                           Style="{StaticResource Style_Label}"/>
+                <TextBox x:Name="Input_LastName"
+                         Style="{StaticResource Style_Input}"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal">
+                <TextBlock x:Name="Label_Input_FirstName" 
+                           Text="Имя"
+                           Style="{StaticResource Style_Label}"/>
+                <TextBox x:Name="Input_FirstName"
+                         Style="{StaticResource Style_Input}"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal">
+                <TextBlock x:Name="Label_Input_Email" 
+                           Text="e-mail"
+                           Style="{StaticResource Style_Label}"/>
+                <TextBox x:Name="Input_Email"
+                         Style="{StaticResource Style_Input}"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal">
+                <TextBlock x:Name="Label_Input_Login" 
+                           Text="Логин"
+                           Style="{StaticResource Style_Label}"/>
+                <TextBox x:Name="Input_Login"
+                         Style="{StaticResource Style_Input}"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal">
+                <TextBlock x:Name="Label_Input_Password" 
+                           Text="Пароль"
+                           Style="{StaticResource Style_Label}"/>
+                <PasswordBox x:Name="Input_Password"
+                             Style="{StaticResource Style_Password}"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal">
+                <TextBlock x:Name="Label_Input_Role" 
+                           Text="Роль"
+                           Style="{StaticResource Style_Label}"/>
+                <ComboBox x:Name="Select_Role"
+                          Style="{StaticResource Style_Select}"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="Button_Edit" 
+                        Content="Редактировать"
+                        Style="{StaticResource Style_Button_Edit}"/>
+                <Button x:Name="Button_Save" 
+                        Content="Сохранить"
+                        Style="{StaticResource Style_Button_Save}"/>
+                <Button x:Name="Button_Cancel"
+                        Content="Отменить"
+                        Style="{StaticResource Style_Button_Cancel}"/>
+            </StackPanel>
+        </StackPanel>
+    </DockPanel>
 </Window>
