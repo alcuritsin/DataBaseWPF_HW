@@ -44,3 +44,34 @@ CREATE TABLE table_account_role
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
 );
+
+INSERT INTO table_account (login, password)
+VALUES ('admin', '123');
+INSERT INTO table_account (login, password, is_active)
+VALUES ('administrator', '123', 0);
+INSERT INTO table_account (login, password)
+VALUES ('anst', '12345');
+
+INSERT INTO table_user (first_name, last_name)
+VALUES ('Admin', 'Admin');
+INSERT INTO table_user (first_name, last_name)
+VALUES ('Admin', 'Admin');
+INSERT INTO table_user (first_name, last_name)
+VALUES ('Andrey', 'Starinin');
+
+INSERT INTO table_email (user_id, email)
+VALUES (1, 'adm@adm.adm');
+INSERT INTO table_email (user_id, email)
+VALUES (3, 'anst@adm.adm');
+
+INSERT INTO table_role (role)
+VALUES ('admin');
+INSERT INTO table_role (role)
+VALUES ('user');
+
+INSERT INTO table_account_role (account_id, role_id)
+VALUES (1, 1);
+INSERT INTO table_account_role (account_id, role_id)
+VALUES (2, 1);
+INSERT INTO table_account_role (account_id, role_id)
+VALUES (3, 2);
