@@ -1,0 +1,46 @@
+﻿CREATE TABLE table_account
+(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT ,
+    login TEXT NOT NULL,
+    password TEXT NOT NULL,
+    is_active INTEGER NOT NULL DEFAULT 1
+);
+
+CREATE TABLE  table_user
+(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    FOREIGN KEY (id) REFERENCES table_account(id)
+        ON UPDATE NO ACTION
+        ON DELETE  NO ACTION
+);
+
+CREATE TABLE table_email
+(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    email TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES table_user(id)
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
+
+CREATE TABLE table_role
+(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    role TEXT NOT NULL
+);
+
+CREATE TABLE table_account_role
+(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    account_id INTEGER NOT NULL,
+    role_id INTEGER NOT NULL,
+    FOREIGN KEY (account_id) REFERENCES table_account(id)
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    FOREIGN KEY (role_id) REFERENCES table_role(id)
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
