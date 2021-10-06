@@ -10,8 +10,16 @@
         <ResourceDictionary Source="Style.xaml"/>
     </Window.Resources>
     <DockPanel>
-        <ListBox x:Name="ListUsers" DockPanel.Dock="Left"
-                 Style="{StaticResource Style_ListUsers}"/>
+        <ListView x:Name="ListUsers" DockPanel.Dock="Left"
+                 Style="{StaticResource Style_ListUsers}"
+                 SelectionChanged="ListUsers_OnSelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Login}">Аккаунт</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
         <StackPanel x:Name="UserInfo" DockPanel.Dock="Right">
             <StackPanel Orientation="Horizontal">
                 <TextBlock x:Name="Label_Input_LastName" 
@@ -58,7 +66,13 @@
                            Text="Роль"
                            Style="{StaticResource Style_Label}"/>
                 <ComboBox x:Name="Select_Role"
-                          Style="{StaticResource Style_Select}"/>
+                          Style="{StaticResource Style_Select}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
             </StackPanel>
             
             <StackPanel Orientation="Horizontal">

@@ -8,4 +8,10 @@
       <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.10" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="db_config.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
