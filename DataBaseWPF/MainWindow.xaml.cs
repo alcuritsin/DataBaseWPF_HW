@@ -27,16 +27,20 @@ namespace DataBaseWPF
         private void ListUsers_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var account = (Account)ListUsers.SelectedItem;
-            var user = _users[account.Id];
+            var user = _users[account.Id - 1];
 
             Input_FirstName.Text = user.FirstName;
             Input_LastName.Text = user.LastName;
 
+            string emails = string.Empty;
+
             foreach (var email in user.ListOfEmail)
             {
-                Input_Email.Text += $" {email}; ";
+                emails += $"{email}; ";
             }
-            
+
+            Input_Email.Text = emails;
+
             Input_Login.Text = account.Login;
             Input_Password.Password = account.Password;
 
