@@ -49,7 +49,8 @@ namespace DataBaseLib
 
                 accounts.Add(account);
             }
-            
+
+            result.Close();
             _db.Close();
 
             return accounts;
@@ -61,7 +62,7 @@ namespace DataBaseLib
 
             var roles = new ObservableCollection<Role>();
 
-            var sql = "SELECT id, role FROM table_role;";
+            var sql = "SELECT id, role FROM table_role";
             _command.CommandText = sql;
             var res = _command.ExecuteReader();
 
@@ -77,7 +78,8 @@ namespace DataBaseLib
                 
                 roles.Add(role);
             }
-            
+
+            res.Close();
             _db.Close();
 
             return roles;
@@ -91,7 +93,7 @@ namespace DataBaseLib
 
             var sql = "SELECT id, first_name, last_name FROM table_user";
             _command.CommandText = sql;
-            var res = _command.ExecuteReader();
+            SqliteDataReader res = _command.ExecuteReader();
 
             if (!res.HasRows) throw new Exception("Данные в БД не найдены");
 
@@ -106,25 +108,32 @@ namespace DataBaseLib
                 
                 users.Add(user);
             }
-            
+            res.Close();
             _db.Close();
 
-            /*for (int i = 0; i < users.Count; i++)
+            for (int i = 0; i < users.Count; i++)
             {
                 _db.Open();
 
-                sql = $"SELECT email FROM table_email WHERE user_id = '{users[i].Id}';";
+                sql = $"SELECT email FROM table_email WHERE user_id = '{users[i].Id}'";
                 _command.CommandText = sql;
                 var result = _command.ExecuteReader();
 
+                var emails = new List<string>();
+
                 while (result.Read())
                 {
-                    users[i].ListOfEmail.Add(result.GetString("email"));
+                    var email = result.GetString("email");
+                    emails.Add(email);
                 }
-                
+
+                users[i].ListOfEmail = emails;
+
+                result.Close();
+
                 _db.Close();
-            }*/
-            
+            }
+
             return users;
         }
     }
